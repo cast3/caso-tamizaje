@@ -1,0 +1,27 @@
+<%= form_with(model: patient, class: "contents") do |form| %>
+  <% if patient.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+      <ul>
+        <% patient.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="inline">
+    <div class="my-5">
+      <%= form.label :cedula %>
+      <%= form.text_field :cedula, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", placeholder:'Cedula de ciudadania o NIT', maxlength:'10' %>
+    </div>
+    <div class="my-5">
+      <%= form.label :nombre %>
+      <%= form.text_field :nombre, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", placeholder:'Nombre completo' %>
+    </div>
+    <div class="my-5">
+      <%= form.label "Teléfono" %>
+      <%= form.telephone_field :telefono, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", placeholder: "Telefono", maxlength:'10' %>
+    </div>
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
