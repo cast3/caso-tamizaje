@@ -1,7 +1,28 @@
 <div id="<%= dom_id patient %>">
-  <% if action_name != "show" %>
-    <%= link_to "Show this patient", patient, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this patient", edit_patient_path(patient), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+  <div class="flex flex-col text-sm justify-start flex-wrap gap-2">
+    <div class="flex flex-row flex-wrap gap-2">
+      <span class="font-medium">Nombre:</span>
+      <%= patient.name %>
+    </div>
+    <div class="flex flex-row flex-wrap gap-2">
+      <span class="font-medium">Identificación:</span>
+      <%= patient.identification %>
+    </div>
+    <div class="flex flex-row flex-wrap gap-2">
+      <span class="font-medium">Presión arterial:</span>
+      <%= patient.calcularCategoriaPresionArterial %>
+    </div>
+    <div class="flex flex-row flex-wrap gap-2">
+      <span class="font-medium">Categoría de masa corporal:</span>
+      <%= patient.calcularCategoriaMasaCorporal %>
+    </div>
+    <div class="flex flex-row flex-wrap gap-2">
+      <span class="font-medium">Masa corporal máxima:</span>
+      <%= patient.calcularMasaMaximaNormal %>
+    </div>
+    <div class="flex flex-row flex-wrap gap-2">
+      <span class="font-medium">Indice de masa corporal:</span>
+      <%= patient.calcularIndiceMasaCorporal %>
+    </div>
+  </div>
 </div>

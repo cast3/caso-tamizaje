@@ -16,12 +16,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_19_042355) do
 
   create_table "patients", force: :cascade do |t|
     t.string "identification", default: ""
+    t.string "name", default: ""
     t.float "mass", default: 0.0
     t.float "height", default: 0.0
     t.integer "systolic_pressure", default: 0
     t.integer "diastolic_pressure", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["identification"], name: "index_patients_on_identification"
   end
 
 end

@@ -32,6 +32,9 @@ gem 'foreman'
 # tailwindcss
 gem 'tailwindcss-rails'
 
+# solargraph
+gem 'solargraph'
+
 # pagy
 gem 'net-http'
 gem 'pagy'

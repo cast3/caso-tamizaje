@@ -1,27 +1,48 @@
-<%= form_with(model: patient, class: "contents") do |form| %>
-  <% if patient.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
-      <ul>
-        <% patient.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_with(model: patient, class: 'text-sm flex justify-center') do |form| %>
   <div class="inline">
     <div class="my-5">
-      <%= form.label :cedula %>
-      <%= form.text_field :cedula, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", placeholder:'Cedula de ciudadania o NIT', maxlength:'10' %>
+      <%= form.label "Identificación" %>
+      <%= form.text_field :identification, class: "block text-sm shadow rounded-md border border-gray-400 outline-none px-3 py-2 w-full", placeholder: 'Cedula de ciudadanía o NIT' %>
+      <div class="text-red-500 mt-1">
+        <%= patient.errors.full_messages_for(:identification).join(', ').split[1..-1].join(" ") if patient.errors[:identification].any? %>
+      </div>
     </div>
     <div class="my-5">
-      <%= form.label :nombre %>
-      <%= form.text_field :nombre, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", placeholder:'Nombre completo' %>
+      <%= form.label "Nombre completo" %>
+      <%= form.text_field :name, class: "block text-sm shadow rounded-md border border-gray-400 outline-none px-3 py-2 w-full", placeholder: 'Nombre del paciente' %>
+      <div class="text-red-500 mt-1">
+        <%= patient.errors.full_messages_for(:name).join(', ').split[1..-1].join(" ") if patient.errors[:name].any? %>
+      </div>
     </div>
     <div class="my-5">
-      <%= form.label "Teléfono" %>
-      <%= form.telephone_field :telefono, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", placeholder: "Telefono", maxlength:'10' %>
+      <%= form.label "Peso (Kg)" %>
+      <%= form.number_field :mass, class: "block text-sm shadow rounded-md border border-gray-400 outline-none px-3 py-2 w-full", placeholder: 'Masa' %>
+      <div class="text-red-500 mt-1">
+        <%= patient.errors.full_messages_for(:mass).join(', ').split[1..-1].join(" ") if patient.errors[:mass].any? %>
+      </div>
     </div>
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <div class="my-5">
+      <%= form.label "Altura (m)" %>
+      <%= form.number_field :height, class: "block text-sm shadow rounded-md border border-gray-400 outline-none px-3 py-2 w-full", placeholder: "Altura" %>
+      <div class="text-red-500 mt-1">
+        <%= patient.errors.full_messages_for(:height).join(', ').split[1..-1].join(" ") if patient.errors[:height].any? %>
+      </div>
+    </div>
+    <div class="my-5">
+      <%= form.label "Presión sistólica" %>
+      <%= form.number_field :systolic_pressure, class: "block text-sm shadow rounded-md border border-gray-400 outline-none px-3 py-2 w-full", placeholder: "Presión sistólica" %>
+      <div class="text-red-500 mt-1">
+        <%= patient.errors.full_messages_for(:systolic_pressure).join(', ').split[2..-1].join(" ") if patient.errors[:systolic_pressure].any? %>
+      </div>
+    </div>
+    <div class="my-5">
+      <%= form.label "Presión diastólica" %>
+      <%= form.number_field :diastolic_pressure, class: "block text-sm shadow rounded-md border border-gray-400 outline-none px-3 py-2 w-full", placeholder: "Presión diastólica" %>
+      <div class="text-red-500 mt-1">
+        <%= patient.errors.full_messages_for(:diastolic_pressure).join(', ').split[2..-1].join(" ") if patient.errors[:diastolic_pressure].any? %>
+      </div>
+    </div>
+    <%= form.submit "Crear paciente", class: "rounded-lg py-2 px-5 bg-blue-600 text-white inline-block font-medium hover:brightness-105 cursor-pointer" %>
+    <%= link_to "Volver al inicio", root_path, class: "ml-2 py-2 border border-gray-300 bg-[#e3e3e3] hover:brightness-105 rounded-lg px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 <% end %>

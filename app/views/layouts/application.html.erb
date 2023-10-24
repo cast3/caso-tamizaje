@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CasoTamizaje</title>
+    <title>Tamizaje en salud</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,11 +9,9 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body>
-    <main class="mx-auto mt-[4dvh] px-6">
-      <%= render "shared/flash" %>
+  <body class="w-full outline-none">
+    <main>
       <%= yield %>
     </main>
-    <%= render partial: "shared/script_tags" %>
   </body>
 </html>

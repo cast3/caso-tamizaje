@@ -1,66 +1,26 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Patients</h1>
-    <%= link_to "New patient", new_patient_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
-  <div id="patients" class="min-w-full">
-    <%= render @patients %>
-  </div>
-</div>
-<section class="mt-10 sm:mt-5 w-full">
-  <div class="mx-auto max-w-screen-xl px-4">
-    <h1 class="font-bold text-4xl pt-5 sm:pt-0">Pacientes</h1>
-    <div class="relative overflow-hidden sm:rounded-lg py-3 md:pb-3">
-      <div class="flex flex-col items-center justify-end space-y-3 px-4 md:flex-row md:space-x-4 md:space-y-0">
-        <div class="flex w-full flex-shrink-0 flex-col items-stretch justify-end space-y-2 md:w-auto md:flex-row md:items-center md:space-x-3 md:space-y-0 mb-3">
-          <div class="flex w-full items-center space-x-3 md:w-auto">
-            <%# ----------------- Nuevo paciente ------------------- %>
-            <%= link_to new_patient_path, class: "hover:text-primary-700 flex w-full w-[15dvw] items-center justify-center rounded-lg border border-gray-200 bg-white px-4 md:px-6 py-2 text-sm font-medium text-gray-900 hover:bg-gray-200 hover:border hover:border-black focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 whitespace-nowrap shadow-lg" do %>
-              <%= image_tag "svgs/IconPlus.svg", class: "text-primary stroke-primary h-6 mr-3" %>
-              Nuevo paciente
-            <% end %>
-          </div>
-        </div>
+<div class="relative w-screen h-screen flex items-center justify-center text-sm">
+  <div class="border bg-[#fefefe] border-gray-300 w-11/12 lg:w-1/2 h-1/2 drop-shadow-xl rounded-lg p-4">
+    <div class="w-full">
+      <div class="relative my-5">
+        <h1 class="font-bold text-center text-2xl my-2 underline">Tamizaje en salud</h1>
+        <h1 class="font-bold text-center text-base mb-2">Pacientes</h1>
       </div>
-      <div class="w-full h-[500px] flex flex-col bg-white shadow-lg">
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-sm text-gray-500">
-            <thead class="text-xs uppercase sticky top-0 bg-primary text-white z-10">
-              <tr>
-                <th scope="col" class="px-4 py-3 whitespace-nowrap">
-                  <%= sort_link_to "Cedula", :identification %>
-                </th>
-                <th scope="col" class="px-4 py-3 whitespace-nowrap">
-                  <%= sort_link_to "Nombre del paciente", :name %>
-                </th>
-                <th scope="col" class="px-4 py-3 whitespace-nowrap">
-                  <%= sort_link_to "Altura", :height %>
-                </th>
-                <th scope="col" class="px-4 py-3 whitespace-nowrap">
-                  <%= sort_link_to "Puntaje", :systolic_pressure %>
-                </th>
-                <th scope="col" class="px-4 py-3 whitespace-nowrap">
-                  <%= sort_link_to "Puntaje", :diastolic_pressure %>
-                </th>
-                <th scope="col" class="px-4 py-3 whitespace-nowrap">
-                  <span class="sr-only">Acciones</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody class="overflow-auto">
-              <%= render @patients %>
-            </tbody>
-          </table>
+      <% if notice.present? %>
+        <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+      <% end %>
+      <div class="w-full flex flex-wrap justify-center gap-4 h-full">
+        <div class="flex flex-col items-center flex-wrap justify-center gap-3 font-medium">
+          <span>1. Buscar paciente:</span>
+          <%= form_tag(buscar_path, method: :get, class:'flex justify-start flex-col gap-2') do %>
+            <%= text_field_tag :parametro, params[:parametro], placeholder: 'Buscar por identificación', class:"w-full text-sm rounded-lg py-2" %>
+            <%= submit_tag "Buscar", class: "hover:brightness-105 rounded-lg py-2 px-5 bg-blue-600 text-white font-medium cursor-pointer" %>
+          <% end %>
         </div>
-      </div>
-      <div class="flex flex-row items-center justify-center sm:justify-between flex-wrap ">
-        <%== render partial: 'shared/pagination_nav', locals: {pagy: @pagy} %>
-        <%= form_with url: "", method: :get, data: {turbo_frame: "clients", turbo_action: "advance"}, class:"flex items-center gap-x-2" do |form| %>
-          Mostrar <%= form.select :count, options_for_select([10,20,50,100], selected: params[:count]), {} , {onchange: "this.form.requestSubmit()",class:'rounded-lg'} %> por página
-        <%end%>
+        <div class="flex flex-col flex-wrap justify-start items-center gap-3 font-medium">
+          <span>2. Crear nuevo paciente:</span>
+          <%= link_to "Nuevo paciente", new_patient_path, class: "flex text-center items-center rounded-lg py-2 px-12 hover:brightness-105 bg-blue-600 w-auto text-white block font-medium" %>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
