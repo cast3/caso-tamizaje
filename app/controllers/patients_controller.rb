@@ -1,10 +1,6 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: %i[ show ]
 
-  def index
-    @patients = Patient.all
-  end
-
   def buscar
     @parametro = params[:parametro]
     @patient = Patient.find_by(identification: @parametro)
@@ -12,7 +8,6 @@ class PatientsController < ApplicationController
     if @patient
       render 'show'
     else
-      flash[:alert] = "No se encontró ningún resultado para '#{@parametro}'"
       redirect_to root_path
     end
   end
@@ -29,28 +24,10 @@ class PatientsController < ApplicationController
 
     respond_to do |format|
       if @patient.save
-        format.html { redirect_to patient_url(@patient), notice: "Patient was successfully created." }
+        format.html { redirect_to patient_url(@patient) }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @patient.update(patient_params)
-        format.html { redirect_to patient_url(@patient), notice: "Patient was successfully updated." }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def destroy
-    @patient.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to patients_url, notice: "Patient was successfully destroyed." }
     end
   end
 
