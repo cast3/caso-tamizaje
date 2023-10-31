@@ -23,6 +23,7 @@ Things you may want to cover:
 
 * ...
 
+sudo service postgresql start
 
 psql -U postgres -d development
 
