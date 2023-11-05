@@ -13,12 +13,12 @@ class Patient < ApplicationRecord
 
     def calcularIndiceMasaCorporal
         rIndiceMasaCorporal = self.mass / (self.height * self.height)
-        return rIndiceMasaCorporal unless rIndiceMasaCorporal.nan? || rIndiceMasaCorporal.negative?
+        return rIndiceMasaCorporal
     end
 
     def calcularMasaMaximaNormal
         rMasaMaximaNormal = 25 * (self.height * self.height)
-        return rMasaMaximaNormal unless rMasaMaximaNormal.nan? || rMasaMaximaNormal.negative?
+        return rMasaMaximaNormal
     end
 
     def calcularCategoriaPresionArterial
@@ -36,7 +36,7 @@ class Patient < ApplicationRecord
             "Bajo peso"
         elsif (calcularIndiceMasaCorporal() <= 25)
             "Normal"
-        elsif (calcularIndiceMasaCorporal() <= 25)
+        elsif (calcularIndiceMasaCorporal() <= 30)
             "Sobrepeso"
         else
             "Obesidad"
