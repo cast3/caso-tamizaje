@@ -41,12 +41,12 @@ class PatientsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Patient.count") do
       post patients_url, params: {
         patient: {
-          identification: "1234567890",   # Añade un valor válido para la identificación
-          name: "John Doe",              # Añade un nombre válido
-          height: 1.75,                   # Añade una altura válida
-          mass: 70,                       # Añade una masa válida
-          systolic_pressure: 120,         # Añade una presión sistólica válida
-          diastolic_pressure: 80         # Añade una presión diastólica válida
+          identification: "1234567890",
+          name: "John Doe",
+          height: 1.75,
+          mass: 70,
+          systolic_pressure: 120,
+          diastolic_pressure: 80
         }
       }
     end
