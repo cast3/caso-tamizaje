@@ -12,13 +12,11 @@ class Patient < ApplicationRecord
     validates :diastolic_pressure, length: { maximum: 10, message: "La presión diastólica no puede tener más de 10 caracteres" }
 
     def calcularIndiceMasaCorporal
-        rIndiceMasaCorporal = self.mass / (self.height * self.height)
-        return rIndiceMasaCorporal
+        self.mass / (self.height * self.height)
     end
 
     def calcularMasaMaximaNormal
-        rMasaMaximaNormal = 25 * (self.height * self.height)
-        return rMasaMaximaNormal
+        25 * (self.height * self.height)
     end
 
     def calcularCategoriaPresionArterial
