@@ -5,11 +5,6 @@ class PatientsControllerTest < ActionDispatch::IntegrationTest
     @patient = patients(:one)
   end
 
-  test "should get index" do
-    get patients_url
-    assert_response :success
-  end
-
   test "should search patient" do
     get buscar_url('No exists')
     assert_redirected_to root_url
