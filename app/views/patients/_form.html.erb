@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="my-5">
-      <%= form.label "Peso (Kg)" %>
+      <%= form.label "Masa (Kg)" %>
       <%= form.number_field :mass, class: "block text-sm shadow rounded-md border border-gray-400 outline-none px-3 py-2 w-full", placeholder: 'Masa' %>
       <div class="text-red-500 mt-1">
         <%= patient.errors.full_messages_for(:mass).join(', ').split[1..-1].join(" ") if patient.errors[:mass].any? %>
@@ -23,7 +23,7 @@
     </div>
     <div class="my-5">
       <%= form.label "Altura (m)" %>
-      <%= form.number_field :height, step: 0.1, class: "block text-sm shadow rounded-md border border-gray-400 outline-none px-3 py-2 w-full", placeholder: "Altura" %>
+      <%= form.number_field :height, step: 0.01, class: "block text-sm shadow rounded-md border border-gray-400 outline-none px-3 py-2 w-full", placeholder: "Altura" %>
       <div class="text-red-500 mt-1">
         <%= patient.errors.full_messages_for(:height).join(', ').split[1..-1].join(" ") if patient.errors[:height].any? %>
       </div>
