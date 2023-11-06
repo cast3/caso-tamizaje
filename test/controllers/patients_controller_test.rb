@@ -2,7 +2,7 @@ require "test_helper"
 
 class PatientsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @patient = patients(:one)
+    @patient = patients(:patient)
   end
 
   test "should search patient" do
@@ -11,20 +11,11 @@ class PatientsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should search and redirect to patient when found" do
-    existing_patient = Patient.create(
-      identification: "1234567890",
-      name: "John Doe",
-      height: 1.75,
-      mass: 70,
-      systolic_pressure: 120,
-      diastolic_pressure: 80
-    )
-  
-    get buscar_url(parametro: existing_patient.identification)
-  
+    get buscar_url(parametro: @patient.identification)
+
     assert_response :success
     assert_template 'show'
-    assert_equal existing_patient, assigns(:patient)
+    assert_equal @patient, assigns(:patient)
   end
 
   test "should get new" do
@@ -36,16 +27,15 @@ class PatientsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Patient.count") do
       post patients_url, params: {
         patient: {
-          identification: "1234567890",
-          name: "John Doe",
-          height: 1.75,
-          mass: 70,
-          systolic_pressure: 120,
-          diastolic_pressure: 80
+          identification: @patient.identification,
+          name: @patient.name,
+          height: @patient.height,
+          mass: @patient.mass,
+          systolic_pressure: @patient.systolic_pressure,
+          diastolic_pressure: @patient.diastolic_pressure
         }
       }
     end
-  
     assert_redirected_to patient_url(Patient.last)
   end
 
