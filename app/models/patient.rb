@@ -5,7 +5,7 @@ class Patient < ApplicationRecord
     validates :mass, presence: { message: "La masa es obligatoria" }
     validates :systolic_pressure, presence: { message: "La presión sistólica es obligatoria" }
     validates :diastolic_pressure, presence: { message: "La presión diastólica es obligatoria" }
-    
+
     validates :height, length: { maximum: 10, message: "La altura no puede tener más de 10 caracteres" }
     validates :mass, length: { maximum: 10, message: "La masa no puede tener más de 10 caracteres" }
     validates :systolic_pressure, length: { maximum: 10, message: "La presión sistólica no puede tener más de 10 caracteres" }
@@ -22,7 +22,7 @@ class Patient < ApplicationRecord
     def calcularCategoriaPresionArterial
         if self.systolic_pressure <= 119 && self.diastolic_pressure <= 79
            "Normal"
-        elsif self.systolic_pressure <= 119 && self.diastolic_pressure <= 79
+        elsif self.systolic_pressure <= 139 && self.diastolic_pressure <= 89
            "Prehipertensión"
         else
            "Hipertensión"
